@@ -1282,7 +1282,6 @@ export class DatatableComponent implements OnInit, AfterViewInit {
       selected: this.selected
     });
     this.selectAll.emit({ allSelected: !allSelected });
-
   }
 
   /**
