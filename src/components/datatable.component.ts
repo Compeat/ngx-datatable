@@ -1267,7 +1267,6 @@ export class DatatableComponent implements OnInit, AfterViewInit {
    * @memberOf DatatableComponent
    */
   onHeaderSelect(event: any): void {
-    debugger;
     // before we splice, chk if we currently have all selected
     const allSelected = this.selected.length === this.rows.length;
 
@@ -1283,6 +1282,7 @@ export class DatatableComponent implements OnInit, AfterViewInit {
       selected: this.selected
     });
     this.selectAll.emit({ allSelected: !allSelected });
+
   }
 
   /**
@@ -1293,7 +1293,6 @@ export class DatatableComponent implements OnInit, AfterViewInit {
    * @memberOf DatatableComponent
    */
   onBodySelect(event: any): void {
-    debugger;
     this.select.emit(event);
   }
 
