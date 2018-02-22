@@ -80,6 +80,7 @@ import { mouseEvent } from '../../events';
             [expanded]="getRowExpanded(row)"
             [rowClass]="rowClass"
             [activateCell$]="activateCell"
+            [selectionType]="selectionType"
             (activate)="selector.onActivate($event, i)">
           </datatable-body-row>
         </datatable-row-wrapper>

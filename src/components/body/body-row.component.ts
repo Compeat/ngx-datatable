@@ -8,6 +8,7 @@ import {
 } from '../../utils';
 import { ScrollbarHelper } from '../../services';
 import { mouseEvent, keyboardEvent } from '../../events';
+import { SelectionType } from '../../types';
 
 @Component({
   selector: 'datatable-body-row',
@@ -22,6 +23,7 @@ import { mouseEvent, keyboardEvent } from '../../events';
         tabindex="-1"
         [row]="row"
         [expanded]="expanded"
+        [selectionType="selectionType"
         [isSelected]="isSelected"
         [isActive]="getCellActive(row, ii)"
         [rowIndex]="rowIndex"
@@ -34,7 +36,7 @@ import { mouseEvent, keyboardEvent } from '../../events';
   `
 })
 export class DataTableBodyRowComponent implements DoCheck {
-
+  @Input() selectionType: SelectionType;
   @Input() set columns(val: any[]) {
     this._columns = val;
     this.recalculateColumns(val);

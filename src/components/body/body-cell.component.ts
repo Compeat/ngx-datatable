@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { Codes } from '../../utils';
-import { SortDirection } from '../../types';
+import { SortDirection, SelectionType } from '../../types';
 import { TableColumn } from '../../types/table-column.type';
 import { mouseEvent, keyboardEvent } from '../../events';
 
@@ -41,7 +41,7 @@ import { mouseEvent, keyboardEvent } from '../../events';
   }
 })
 export class DataTableBodyCellComponent implements DoCheck, OnDestroy, OnInit {
-
+  @Input() selectionType: SelectionType;
   @Input() rowHeight: number;
 
   @Input() set isSelected(val: boolean) {
@@ -285,8 +285,10 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy, OnInit {
       code === Codes.tab;
 
     if (isAction && isContainedCell) {
-      event.preventDefault();
-      event.stopPropagation();
+      if (this.selectionType !== SelectionType.checkbox) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       this.activate.emit({
         type: 'keydown',
