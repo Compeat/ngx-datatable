@@ -297,6 +297,7 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      * @memberOf DatatableComponent
      */
     trackByProp: string;
+    allowKeyEventPropagation: boolean;
     /**
      * Body was scrolled typically in a `scrollbarV:true` scenario.
      *

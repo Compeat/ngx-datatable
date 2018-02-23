@@ -16,6 +16,7 @@ export declare class DataTableBodyRowComponent implements DoCheck {
     getCellActive: (row: any, col: number) => boolean;
     rowIndex: number;
     activateCell$: EventEmitter<any>;
+    allowKeyEventPropagation: boolean;
     readonly cssClass: string;
     rowHeight: number;
     readonly columnsTotalWidths: string;

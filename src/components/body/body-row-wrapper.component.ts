@@ -33,6 +33,7 @@ export class DataTableRowWrapperComponent {
   @Input() rowIndex: number;
   @Input() isSelected: boolean = false;
   @Input() isActive: boolean = true;
+  @Input() allowKeyEventPropagation: boolean = false;
 
   @Output() rowContextmenu = new EventEmitter<{ event: MouseEvent, row: any }>(false);
 

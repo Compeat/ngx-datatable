@@ -27,6 +27,7 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
     trackByProp: string;
     rowClass: any;
     sectionCounts: number[];
+    allowKeyEventPropagation: boolean;
     pageSize: number;
     rows: any[];
     columns: any[];
