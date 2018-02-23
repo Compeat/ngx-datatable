@@ -13,6 +13,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy, O
     rowIdentity: (t: any) => any;
     sorts: any[];
     activateCell$: EventEmitter<any>;
+    allowKeyEventPropagation: boolean;
     activate: EventEmitter<any>;
     cellTemplate: ViewContainerRef;
     readonly columnCssClasses: any;

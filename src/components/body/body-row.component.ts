@@ -28,6 +28,7 @@ import { mouseEvent, keyboardEvent } from '../../events';
         [column]="column"
         [rowHeight]="rowHeight"
         [activateCell$]="activateCell$"
+        [allowKeyEventPropagation]="allowKeyEventPropagation"
         (activate)="onActivate($event, ii)">
       </datatable-body-cell>
     </div>
@@ -63,6 +64,7 @@ export class DataTableBodyRowComponent implements DoCheck {
   @Input() getCellActive: (row: any, col: number) => boolean;
   @Input() rowIndex: number;
   @Input() activateCell$: EventEmitter<any>;
+  @Input() allowKeyEventPropagation: boolean = false;
 
   @HostBinding('class')
   get cssClass() {

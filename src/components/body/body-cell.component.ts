@@ -118,6 +118,8 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy, OnInit {
 
   @Input() activateCell$: EventEmitter<any>;
 
+  @Input() allowKeyEventPropagation: boolean = false;
+
   @Output() activate: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('cellTemplate', { read: ViewContainerRef }) cellTemplate: ViewContainerRef;
@@ -285,8 +287,10 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy, OnInit {
       code === Codes.tab;
 
     if (isAction && isContainedCell) {
-      event.preventDefault();
-      event.stopPropagation();
+      if (!this.allowKeyEventPropagation) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       this.activate.emit({
         type: 'keydown',

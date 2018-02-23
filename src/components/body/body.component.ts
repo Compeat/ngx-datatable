@@ -50,6 +50,7 @@ import { mouseEvent } from '../../events';
           [row]="row"
           [rowIndex]="getRowIndex(row)"
           [expanded]="getRowExpanded(row)"
+          [allowKeyEventPropagation]="allowKeyEventPropagation"
           (rowContextmenu)="rowContextmenu.emit($event)">
           <datatable-body-section-header
             *ngIf="row.$$isSectionHeader"
@@ -80,6 +81,7 @@ import { mouseEvent } from '../../events';
             [expanded]="getRowExpanded(row)"
             [rowClass]="rowClass"
             [activateCell$]="activateCell"
+            [allowKeyEventPropagation]="allowKeyEventPropagation"
             (activate)="selector.onActivate($event, i)">
           </datatable-body-row>
         </datatable-row-wrapper>
@@ -118,6 +120,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() trackByProp: string;
   @Input() rowClass: any;
   @Input() sectionCounts: number[];
+  @Input() allowKeyEventPropagation: boolean = false;
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;

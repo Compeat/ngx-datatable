@@ -75,6 +75,7 @@ import { mouseEvent } from '../events';
         [rowIdentity]="rowIdentity"
         [rowClass]="rowClass"
         [selectCheck]="selectCheck"
+        [allowKeyEventPropagation]="allowKeyEventPropagation"
         (page)="onBodyPage($event)"
         [activated]="activated"
         (activate)="activate.emit($event)"
@@ -526,6 +527,8 @@ export class DatatableComponent implements OnInit, AfterViewInit {
    * @memberOf DatatableComponent
    */
   @Input() trackByProp: string;
+
+  @Input() allowKeyEventPropagation: boolean = false;
 
   /**
    * Body was scrolled typically in a `scrollbarV:true` scenario.

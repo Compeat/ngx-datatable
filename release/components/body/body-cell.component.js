@@ -6,6 +6,7 @@ var types_1 = require("../../types");
 var DataTableBodyCellComponent = /** @class */ (function () {
     function DataTableBodyCellComponent(element, cd) {
         this.cd = cd;
+        this.allowKeyEventPropagation = false;
         this.activate = new core_1.EventEmitter();
         this.onCheckboxChangeFn = this.onCheckboxChange.bind(this);
         this.activateFn = this.activate.emit.bind(this.activate);
@@ -238,8 +239,10 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             code === utils_1.Codes.right ||
             code === utils_1.Codes.tab;
         if (isAction && isContainedCell) {
-            event.preventDefault();
-            event.stopPropagation();
+            if (!this.allowKeyEventPropagation) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             this.activate.emit({
                 type: 'keydown',
                 event: event,
@@ -301,6 +304,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         'rowIdentity': [{ type: core_1.Input },],
         'sorts': [{ type: core_1.Input },],
         'activateCell$': [{ type: core_1.Input },],
+        'allowKeyEventPropagation': [{ type: core_1.Input },],
         'activate': [{ type: core_1.Output },],
         'cellTemplate': [{ type: core_1.ViewChild, args: ['cellTemplate', { read: core_1.ViewContainerRef },] },],
         'columnCssClasses': [{ type: core_1.HostBinding, args: ['class',] },],

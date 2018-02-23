@@ -8,6 +8,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
         this.differs = differs;
         this.scrollbarHelper = scrollbarHelper;
         this.cd = cd;
+        this.allowKeyEventPropagation = false;
         this.activate = new core_1.EventEmitter();
         this.element = element.nativeElement;
         this.rowDiffer = differs.find({}).create(null);
@@ -132,7 +133,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
         { type: core_1.Component, args: [{
                     selector: 'datatable-body-row',
                     changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <div\n      *ngFor=\"let colGroup of columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{colGroup.type}} datatable-row-group\"\n      [ngStyle]=\"stylesByGroup(colGroup.type)\">\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [isActive]=\"getCellActive(row, ii)\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [activateCell$]=\"activateCell$\"\n        (activate)=\"onActivate($event, ii)\">\n      </datatable-body-cell>\n    </div>\n  "
+                    template: "\n    <div\n      *ngFor=\"let colGroup of columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{colGroup.type}} datatable-row-group\"\n      [ngStyle]=\"stylesByGroup(colGroup.type)\">\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [isActive]=\"getCellActive(row, ii)\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [activateCell$]=\"activateCell$\"\n        [allowKeyEventPropagation]=\"allowKeyEventPropagation\"\n        (activate)=\"onActivate($event, ii)\">\n      </datatable-body-cell>\n    </div>\n  "
                 },] },
     ];
     /** @nocollapse */
@@ -155,6 +156,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
         'getCellActive': [{ type: core_1.Input },],
         'rowIndex': [{ type: core_1.Input },],
         'activateCell$': [{ type: core_1.Input },],
+        'allowKeyEventPropagation': [{ type: core_1.Input },],
         'cssClass': [{ type: core_1.HostBinding, args: ['class',] },],
         'rowHeight': [{ type: core_1.HostBinding, args: ['style.height.px',] }, { type: core_1.Input },],
         'columnsTotalWidths': [{ type: core_1.HostBinding, args: ['style.width.px',] },],

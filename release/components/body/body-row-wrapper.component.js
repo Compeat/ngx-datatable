@@ -6,6 +6,7 @@ var DataTableRowWrapperComponent = /** @class */ (function () {
         this.expanded = false;
         this.isSelected = false;
         this.isActive = true;
+        this.allowKeyEventPropagation = false;
         this.rowContextmenu = new core_1.EventEmitter(false);
     }
     DataTableRowWrapperComponent.prototype.onContextmenu = function ($event) {
@@ -42,6 +43,7 @@ var DataTableRowWrapperComponent = /** @class */ (function () {
         'rowIndex': [{ type: core_1.Input },],
         'isSelected': [{ type: core_1.Input },],
         'isActive': [{ type: core_1.Input },],
+        'allowKeyEventPropagation': [{ type: core_1.Input },],
         'rowContextmenu': [{ type: core_1.Output },],
         'onContextmenu': [{ type: core_1.HostListener, args: ['contextmenu', ['$event'],] },],
         'cssClass': [{ type: core_1.HostBinding, args: ['class',] },],
