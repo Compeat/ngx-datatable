@@ -1,5 +1,5 @@
 /**
- * angular2-data-table v"10.0.6" (https://github.com/swimlane/angular2-data-table)
+ * angular2-data-table v"10.0.7" (https://github.com/swimlane/angular2-data-table)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -1914,8 +1914,10 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             code === utils_1.Codes.right ||
             code === utils_1.Codes.tab;
         if (isAction && isContainedCell) {
-            event.preventDefault();
-            event.stopPropagation();
+            if (this.selectionType !== types_1.SelectionType.checkbox) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             this.activate.emit({
                 type: 'keydown',
                 event: event,
@@ -1951,6 +1953,10 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             return html;
         return html.replace(/<\/?[^>]+(>|$)/g, '');
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], DataTableBodyCellComponent.prototype, "selectionType", void 0);
     __decorate([
         core_1.Input(),
         __metadata("design:type", Number)
@@ -2184,6 +2190,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var services_1 = __webpack_require__("./src/services/index.ts");
+var types_1 = __webpack_require__("./src/types/index.ts");
 var DataTableBodyRowComponent = /** @class */ (function () {
     function DataTableBodyRowComponent(differs, scrollbarHelper, cd, element) {
         this.differs = differs;
@@ -2311,6 +2318,10 @@ var DataTableBodyRowComponent = /** @class */ (function () {
     };
     __decorate([
         core_1.Input(),
+        __metadata("design:type", String)
+    ], DataTableBodyRowComponent.prototype, "selectionType", void 0);
+    __decorate([
+        core_1.Input(),
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [Array])
     ], DataTableBodyRowComponent.prototype, "columns", null);
@@ -2388,7 +2399,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'datatable-body-row',
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-            template: "\n    <div\n      *ngFor=\"let colGroup of columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{colGroup.type}} datatable-row-group\"\n      [ngStyle]=\"stylesByGroup(colGroup.type)\">\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [isActive]=\"getCellActive(row, ii)\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [activateCell$]=\"activateCell$\"\n        (activate)=\"onActivate($event, ii)\">\n      </datatable-body-cell>\n    </div>\n  "
+            template: "\n    <div\n      *ngFor=\"let colGroup of columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{colGroup.type}} datatable-row-group\"\n      [ngStyle]=\"stylesByGroup(colGroup.type)\">\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [expanded]=\"expanded\"\n        [selectionType=\"selectionType\"\n        [isSelected]=\"isSelected\"\n        [isActive]=\"getCellActive(row, ii)\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [activateCell$]=\"activateCell$\"\n        (activate)=\"onActivate($event, ii)\">\n      </datatable-body-cell>\n    </div>\n  "
         }),
         __metadata("design:paramtypes", [core_1.KeyValueDiffers,
             services_1.ScrollbarHelper,
@@ -3395,7 +3406,7 @@ var DataTableBodyComponent = /** @class */ (function () {
     DataTableBodyComponent = __decorate([
         core_1.Component({
             selector: 'datatable-body',
-            template: "\n    <datatable-selection\n      #selector\n      [selected]=\"selected\"\n      [activated]=\"activated\"\n      [columns]=\"columns\"\n      [rows]=\"temp\"\n      [selectCheck]=\"selectCheck\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\"\n      (activateCell)=\"activateCell.emit($event)\">\n      <datatable-progress\n        *ngIf=\"loadingIndicator\">\n      </datatable-progress>\n      <datatable-scroller\n        *ngIf=\"rows?.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"columnGroupWidths.total\"\n        (scroll)=\"onBodyScroll($event)\">\n        <datatable-row-wrapper\n          *ngFor=\"let row of temp; let i = index; trackBy: rowTrackingFn;\"\n          [ngStyle]=\"getRowsStyles(row, i)\"\n          [isSelected]=\"selector.getRowSelected(row)\"\n          [rowDetail]=\"rowDetail\"\n          [detailRowHeight]=\"getDetailRowHeight(row,i)\"\n          [row]=\"row\"\n          [rowIndex]=\"getRowIndex(row)\"\n          [expanded]=\"getRowExpanded(row)\"\n          (rowContextmenu)=\"rowContextmenu.emit($event)\">\n          <datatable-body-section-header\n            *ngIf=\"row.$$isSectionHeader\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(row)\"\n            [columns]=\"columns\"\n            [sectionHeaderTemplate]=\"sectionHeader\"\n            [sectionHeaderHeight]=\"getSectionHeaderHeight(row)\"\n            [row]=\"row\"\n            [rowIndex]=\"getRowIndex(row)\"\n            [expanded]=\"getSectionExpanded(row)\"\n            [sectionCount]=\"getSectionCount(row.$$sectionIndex)\"\n            [rowClass]=\"rowClass\"\n            (activate)=\"selector.onActivate($event, i)\">\n          </datatable-body-section-header>\n          <datatable-body-row\n            *ngIf=\"!row.$$isSectionHeader\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(row)\"\n            [isActive]=\"selector.getRowActive(row)\"\n            [getCellActive]=\"selector.getCellActive\"\n            [innerWidth]=\"innerWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowHeight]=\"getRowHeight(row)\"\n            [row]=\"row\"\n            [rowIndex]=\"getRowIndex(row)\"\n            [expanded]=\"getRowExpanded(row)\"\n            [rowClass]=\"rowClass\"\n            [activateCell$]=\"activateCell\"\n            (activate)=\"selector.onActivate($event, i)\">\n          </datatable-body-row>\n        </datatable-row-wrapper>\n      </datatable-scroller>\n      <div\n        class=\"empty-row\"\n        *ngIf=\"!rows?.length\"\n        [innerHTML]=\"emptyMessage\">\n      </div>\n    </datatable-selection>\n  ",
+            template: "\n    <datatable-selection\n      #selector\n      [selected]=\"selected\"\n      [activated]=\"activated\"\n      [columns]=\"columns\"\n      [rows]=\"temp\"\n      [selectCheck]=\"selectCheck\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\"\n      (activateCell)=\"activateCell.emit($event)\">\n      <datatable-progress\n        *ngIf=\"loadingIndicator\">\n      </datatable-progress>\n      <datatable-scroller\n        *ngIf=\"rows?.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"columnGroupWidths.total\"\n        (scroll)=\"onBodyScroll($event)\">\n        <datatable-row-wrapper\n          *ngFor=\"let row of temp; let i = index; trackBy: rowTrackingFn;\"\n          [ngStyle]=\"getRowsStyles(row, i)\"\n          [isSelected]=\"selector.getRowSelected(row)\"\n          [rowDetail]=\"rowDetail\"\n          [detailRowHeight]=\"getDetailRowHeight(row,i)\"\n          [row]=\"row\"\n          [rowIndex]=\"getRowIndex(row)\"\n          [expanded]=\"getRowExpanded(row)\"\n          (rowContextmenu)=\"rowContextmenu.emit($event)\">\n          <datatable-body-section-header\n            *ngIf=\"row.$$isSectionHeader\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(row)\"\n            [columns]=\"columns\"\n            [sectionHeaderTemplate]=\"sectionHeader\"\n            [sectionHeaderHeight]=\"getSectionHeaderHeight(row)\"\n            [row]=\"row\"\n            [rowIndex]=\"getRowIndex(row)\"\n            [expanded]=\"getSectionExpanded(row)\"\n            [sectionCount]=\"getSectionCount(row.$$sectionIndex)\"\n            [rowClass]=\"rowClass\"\n            (activate)=\"selector.onActivate($event, i)\">\n          </datatable-body-section-header>\n          <datatable-body-row\n            *ngIf=\"!row.$$isSectionHeader\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(row)\"\n            [isActive]=\"selector.getRowActive(row)\"\n            [getCellActive]=\"selector.getCellActive\"\n            [innerWidth]=\"innerWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowHeight]=\"getRowHeight(row)\"\n            [row]=\"row\"\n            [rowIndex]=\"getRowIndex(row)\"\n            [expanded]=\"getRowExpanded(row)\"\n            [rowClass]=\"rowClass\"\n            [activateCell$]=\"activateCell\"\n            [selectionType]=\"selectionType\"\n            (activate)=\"selector.onActivate($event, i)\">\n          </datatable-body-row>\n        </datatable-row-wrapper>\n      </datatable-scroller>\n      <div\n        class=\"empty-row\"\n        *ngIf=\"!rows?.length\"\n        [innerHTML]=\"emptyMessage\">\n      </div>\n    </datatable-selection>\n  ",
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
             host: {
                 class: 'datatable-body'
