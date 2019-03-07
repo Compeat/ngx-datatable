@@ -452,7 +452,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     if (row.$$isSectionHeader) {
       return this.getSectionHeaderHeight(row);
     }
-    return typeof this.rowHeight === 'function' ? this.rowHeight(row) : this.rowHeight;
+    return typeof this.rowHeight === 'function' ? (this as any).rowHeight(row) : this.rowHeight;
   }
 
   /**

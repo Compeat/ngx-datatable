@@ -842,7 +842,7 @@ export class DatatableComponent implements OnInit, AfterViewInit {
 
     // get ref to elm for measuring
     this.element = element.nativeElement;
-    this.rowDiffer = differs.find({}).create(null);
+    this.rowDiffer = differs.find({}).create();
   }
 
   @HostListener('blur')
