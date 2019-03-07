@@ -36,7 +36,7 @@ import { mouseEvent } from '../../events';
       <ng-template
         *ngIf="column.headerTemplate"
         [ngTemplateOutlet]="column.headerTemplate"
-        [ngOutletContext]="cellContext">
+        [ngTemplateOutletContext]="cellContext">
       </ng-template>
     </div>
   `,

@@ -11,7 +11,7 @@ import { Codes, columnsTotalWidth } from '../../utils';
     <ng-template
       *ngIf="sectionHeaderTemplate"
       [ngTemplateOutlet]="sectionHeaderTemplate.template"
-      [ngOutletContext]="{
+      [ngTemplateOutletContext]="{
         section: row,
         expanded: expanded,
         isSelected: isSelected,

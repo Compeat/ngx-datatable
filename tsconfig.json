@@ -22,7 +22,7 @@
     "lib": ["es6", "dom"],
     "skipLibCheck": true
   },
-  "files": [
+  "include": [
     "src/declarations.d.ts",
     "src/index.ts"
   ],
