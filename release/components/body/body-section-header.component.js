@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var utils_1 = require("../../utils");
@@ -81,34 +90,83 @@ var DataTableBodySectionHeaderComponent = /** @class */ (function () {
             });
         }
     };
-    DataTableBodySectionHeaderComponent.decorators = [
-        { type: core_1.Component, args: [{
-                    selector: 'datatable-body-section-header',
-                    template: "\n    <ng-template\n      *ngIf=\"sectionHeaderTemplate\"\n      [ngTemplateOutlet]=\"sectionHeaderTemplate.template\"\n      [ngTemplateOutletContext]=\"{\n        section: row,\n        expanded: expanded,\n        isSelected: isSelected,\n        sectionCount: sectionCount\n      }\">\n    </ng-template>\n    <div *ngIf=\"!sectionHeaderTemplate\">\n      {{row.title}}\n    </div>\n  ",
-                    changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-                },] },
-    ];
-    /** @nocollapse */
-    DataTableBodySectionHeaderComponent.ctorParameters = function () { return [
-        { type: core_1.ElementRef, },
-    ]; };
-    DataTableBodySectionHeaderComponent.propDecorators = {
-        'columns': [{ type: core_1.Input },],
-        'expanded': [{ type: core_1.Input },],
-        'rowClass': [{ type: core_1.Input },],
-        'row': [{ type: core_1.Input },],
-        'isSelected': [{ type: core_1.Input },],
-        'rowIndex': [{ type: core_1.Input },],
-        'sectionCount': [{ type: core_1.Input },],
-        'sectionHeaderTemplate': [{ type: core_1.Input },],
-        'cssClass': [{ type: core_1.HostBinding, args: ['class',] },],
-        'sectionHeaderHeight': [{ type: core_1.HostBinding, args: ['style.height.px',] }, { type: core_1.Input },],
-        'activate': [{ type: core_1.Output },],
-        '_calculatedWidth': [{ type: core_1.HostBinding, args: ['style.width.px',] },],
-        'onClick': [{ type: core_1.HostListener, args: ['click', ['$event'],] },],
-        'onDblClick': [{ type: core_1.HostListener, args: ['dblclick', ['$event'],] },],
-        'onKeyDown': [{ type: core_1.HostListener, args: ['keydown', ['$event'],] },],
-    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [Array])
+    ], DataTableBodySectionHeaderComponent.prototype, "columns", null);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Boolean)
+    ], DataTableBodySectionHeaderComponent.prototype, "expanded", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], DataTableBodySectionHeaderComponent.prototype, "rowClass", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], DataTableBodySectionHeaderComponent.prototype, "row", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Boolean)
+    ], DataTableBodySectionHeaderComponent.prototype, "isSelected", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], DataTableBodySectionHeaderComponent.prototype, "rowIndex", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], DataTableBodySectionHeaderComponent.prototype, "sectionCount", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", core_1.TemplateRef)
+    ], DataTableBodySectionHeaderComponent.prototype, "sectionHeaderTemplate", void 0);
+    __decorate([
+        core_1.HostBinding('class'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], DataTableBodySectionHeaderComponent.prototype, "cssClass", null);
+    __decorate([
+        core_1.HostBinding('style.height.px'),
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], DataTableBodySectionHeaderComponent.prototype, "sectionHeaderHeight", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", core_1.EventEmitter)
+    ], DataTableBodySectionHeaderComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.HostBinding('style.width.px'),
+        __metadata("design:type", Number)
+    ], DataTableBodySectionHeaderComponent.prototype, "_calculatedWidth", void 0);
+    __decorate([
+        core_1.HostListener('click', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [MouseEvent]),
+        __metadata("design:returntype", void 0)
+    ], DataTableBodySectionHeaderComponent.prototype, "onClick", null);
+    __decorate([
+        core_1.HostListener('dblclick', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [MouseEvent]),
+        __metadata("design:returntype", void 0)
+    ], DataTableBodySectionHeaderComponent.prototype, "onDblClick", null);
+    __decorate([
+        core_1.HostListener('keydown', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [KeyboardEvent]),
+        __metadata("design:returntype", void 0)
+    ], DataTableBodySectionHeaderComponent.prototype, "onKeyDown", null);
+    DataTableBodySectionHeaderComponent = __decorate([
+        core_1.Component({
+            selector: 'datatable-body-section-header',
+            template: "\n    <ng-template\n      *ngIf=\"sectionHeaderTemplate\"\n      [ngTemplateOutlet]=\"sectionHeaderTemplate.template\"\n      [ngTemplateOutletContext]=\"{\n        section: row,\n        expanded: expanded,\n        isSelected: isSelected,\n        sectionCount: sectionCount\n      }\">\n    </ng-template>\n    <div *ngIf=\"!sectionHeaderTemplate\">\n      {{row.title}}\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
+        }),
+        __metadata("design:paramtypes", [core_1.ElementRef])
+    ], DataTableBodySectionHeaderComponent);
     return DataTableBodySectionHeaderComponent;
 }());
 exports.DataTableBodySectionHeaderComponent = DataTableBodySectionHeaderComponent;

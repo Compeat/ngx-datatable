@@ -10,37 +10,31 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
     private scrollbarHelper;
     private cd;
     /**
-     * Gets the rows.
-     *
-     * @readonly
-     * @type {*}
-     * @memberOf DatatableComponent
-     */
-    /**
      * Rows that are displayed in the table.
      *
      * @memberOf DatatableComponent
      */
-    rows: any;
     /**
-     * Get the columns.
-     *
-     * @readonly
-     * @type {any[]}
-     * @memberOf DatatableComponent
-     */
+    * Gets the rows.
+    *
+    * @readonly
+    * @type {*}
+    * @memberOf DatatableComponent
+    */
+    rows: any;
     /**
      * Columns to be displayed.
      *
      * @memberOf DatatableComponent
      */
-    columns: TableColumn[];
     /**
-     * Get section property
-     *
-     * @type {SectionProp}
-     * @memberOf DatatableComponent
-     */
+    * Get the columns.
+    *
+    * @readonly
+    * @type {any[]}
+    * @memberOf DatatableComponent
+    */
+    columns: TableColumn[];
     /**
      * Property to section rows on. Setting/clearing this will enable/disable sectioning.
      *
@@ -51,20 +45,26 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      * @type {SectionProp}
      * @memberOf DatatableComponent
      */
-    sectionProp: SectionProp;
     /**
-     * Get the sections.
-     *
-     * @readonly
-     * @type {Section[]}
-     * @memberOf DatatableComponent
-     */
+    * Get section property
+    *
+    * @type {SectionProp}
+    * @memberOf DatatableComponent
+    */
+    sectionProp: SectionProp;
     /**
      * Set the sections.
      *
      * @type {Section[]}
      * @memberOf DatatableComponent
      */
+    /**
+    * Get the sections.
+    *
+    * @readonly
+    * @type {Section[]}
+    * @memberOf DatatableComponent
+    */
     sections: Section[];
     /**
      * List of row objects that should be
@@ -170,19 +170,19 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      */
     limit: number;
     /**
-     * Gets the count.
-     *
-     * @readonly
-     * @type {number}
-     * @memberOf DatatableComponent
-     */
-    /**
      * The total count of all rows.
      * Default value: `0`
      *
      * @type {number}
      * @memberOf DatatableComponent
      */
+    /**
+    * Gets the count.
+    *
+    * @readonly
+    * @type {number}
+    * @memberOf DatatableComponent
+    */
     count: number;
     /**
      * The current offset ( page - 1 ) shown.
@@ -450,18 +450,18 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      */
     readonly isMultiClickSelection: boolean;
     /**
-     * Returns the column templates.
-     *
-     * @readonly
-     * @type {QueryList<DataTableColumnDirective>}
-     * @memberOf DatatableComponent
-     */
-    /**
      * Column templates gathered from `ContentChildren`
      * if described in your markup.
      *
      * @memberOf DatatableComponent
      */
+    /**
+    * Returns the column templates.
+    *
+    * @readonly
+    * @type {QueryList<DataTableColumnDirective>}
+    * @memberOf DatatableComponent
+    */
     columnTemplates: QueryList<DataTableColumnDirective>;
     /**
      * Row Detail templates gathered from the ContentChild
@@ -606,7 +606,7 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      *
      * @memberOf DatatableComponent
      */
-    onBodyPage({offset}: any): void;
+    onBodyPage({ offset }: any): void;
     /**
      * The body triggered a scroll event.
      *
@@ -649,7 +649,7 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      *
      * @memberOf DatatableComponent
      */
-    onColumnContextmenu({event, column}: any): void;
+    onColumnContextmenu({ event, column }: any): void;
     /**
      * The body triggered a contextmenu event.
      *
@@ -657,7 +657,7 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      *
      * @memberOf DatatableComponent
      */
-    onRowContextmenu({event, row}: any): void;
+    onRowContextmenu({ event, row }: any): void;
     /**
      * The header triggered a column resize event.
      *
@@ -665,7 +665,7 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      *
      * @memberOf DatatableComponent
      */
-    onColumnResize({column, newValue}: any): void;
+    onColumnResize({ column, newValue }: any): void;
     /**
      * The header triggered a column re-order event.
      *
@@ -673,7 +673,7 @@ export declare class DatatableComponent implements OnInit, AfterViewInit {
      *
      * @memberOf DatatableComponent
      */
-    onColumnReorder({column, newValue, prevValue}: any): void;
+    onColumnReorder({ column, newValue, prevValue }: any): void;
     /**
      * The header triggered a column sort event.
      *

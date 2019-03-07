@@ -21,7 +21,7 @@ export declare function throttle(func: any, wait: number, options?: any): () => 
  * @param {*} [options]
  * @returns
  */
-export declare function throttleable(duration: number, options?: any): (target: any, key: PropertyKey, descriptor: PropertyDescriptor) => {
+export declare function throttleable(duration: number, options?: any): (target: any, key: string | number | symbol, descriptor: PropertyDescriptor) => {
     configurable: boolean;
     enumerable: boolean;
     get: () => any;

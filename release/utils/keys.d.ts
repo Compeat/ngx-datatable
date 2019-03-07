@@ -5,5 +5,5 @@ export declare enum Codes {
     escape = "Escape",
     left = "ArrowLeft",
     right = "ArrowRight",
-    tab = "Tab",
+    tab = "Tab"
 }

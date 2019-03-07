@@ -1,11 +1,23 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
@@ -73,6 +85,7 @@ var DataTableSelectionComponent = /** @class */ (function () {
         return { newRow: newRow, upRow: upRow, downRow: downRow, nextColumn: nextColumn };
     };
     DataTableSelectionComponent.prototype.selectRow = function (event, index, row) {
+        var _a;
         if (!this.selectEnabled || row.$$isSectionHeader)
             return;
         var chkbox = this.selectionType === types_1.SelectionType.checkbox;
@@ -102,7 +115,6 @@ var DataTableSelectionComponent = /** @class */ (function () {
         this.select.emit({
             selected: selected
         });
-        var _a;
     };
     DataTableSelectionComponent.prototype.onActivate = function (model, index) {
         var type = model.type, event = model.event, row = model.row;
@@ -207,28 +219,59 @@ var DataTableSelectionComponent = /** @class */ (function () {
             return id === rowId;
         });
     };
-    DataTableSelectionComponent.decorators = [
-        { type: core_1.Component, args: [{
-                    selector: 'datatable-selection',
-                    template: "\n    <ng-content></ng-content>\n  ",
-                    changeDetection: core_1.ChangeDetectionStrategy.OnPush
-                },] },
-    ];
-    /** @nocollapse */
-    DataTableSelectionComponent.ctorParameters = function () { return []; };
-    DataTableSelectionComponent.propDecorators = {
-        'rows': [{ type: core_1.Input },],
-        'columns': [{ type: core_1.Input },],
-        'selected': [{ type: core_1.Input },],
-        'selectEnabled': [{ type: core_1.Input },],
-        'selectionType': [{ type: core_1.Input },],
-        'rowIdentity': [{ type: core_1.Input },],
-        'selectCheck': [{ type: core_1.Input },],
-        'activated': [{ type: core_1.Input },],
-        'activate': [{ type: core_1.Output },],
-        'activateCell': [{ type: core_1.Output },],
-        'select': [{ type: core_1.Output },],
-    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Array)
+    ], DataTableSelectionComponent.prototype, "rows", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Array)
+    ], DataTableSelectionComponent.prototype, "columns", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Array)
+    ], DataTableSelectionComponent.prototype, "selected", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Boolean)
+    ], DataTableSelectionComponent.prototype, "selectEnabled", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], DataTableSelectionComponent.prototype, "selectionType", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], DataTableSelectionComponent.prototype, "rowIdentity", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], DataTableSelectionComponent.prototype, "selectCheck", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], DataTableSelectionComponent.prototype, "activated", null);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", core_1.EventEmitter)
+    ], DataTableSelectionComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", core_1.EventEmitter)
+    ], DataTableSelectionComponent.prototype, "activateCell", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", core_1.EventEmitter)
+    ], DataTableSelectionComponent.prototype, "select", void 0);
+    DataTableSelectionComponent = __decorate([
+        core_1.Component({
+            selector: 'datatable-selection',
+            template: "\n    <ng-content></ng-content>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }),
+        __metadata("design:paramtypes", [])
+    ], DataTableSelectionComponent);
     return DataTableSelectionComponent;
 }());
 exports.DataTableSelectionComponent = DataTableSelectionComponent;

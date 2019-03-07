@@ -64,5 +64,5 @@ export declare class RowHeightCache {
      * @param sum - The scrollY position.
      * @returns {number} - Index representing the first row visible in the viewport
      */
-    private calcRowIndex(sum);
+    private calcRowIndex;
 }
