@@ -84,7 +84,7 @@ var DataTableBodySectionHeaderComponent = /** @class */ (function () {
     DataTableBodySectionHeaderComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'datatable-body-section-header',
-                    template: "\n    <ng-template\n      *ngIf=\"sectionHeaderTemplate\"\n      [ngTemplateOutlet]=\"sectionHeaderTemplate.template\"\n      [ngOutletContext]=\"{\n        section: row,\n        expanded: expanded,\n        isSelected: isSelected,\n        sectionCount: sectionCount\n      }\">\n    </ng-template>\n    <div *ngIf=\"!sectionHeaderTemplate\">\n      {{row.title}}\n    </div>\n  ",
+                    template: "\n    <ng-template\n      *ngIf=\"sectionHeaderTemplate\"\n      [ngTemplateOutlet]=\"sectionHeaderTemplate.template\"\n      [ngTemplateOutletContext]=\"{\n        section: row,\n        expanded: expanded,\n        isSelected: isSelected,\n        sectionCount: sectionCount\n      }\">\n    </ng-template>\n    <div *ngIf=\"!sectionHeaderTemplate\">\n      {{row.title}}\n    </div>\n  ",
                     changeDetection: core_1.ChangeDetectionStrategy.OnPush,
                 },] },
     ];
